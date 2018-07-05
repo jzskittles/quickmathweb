@@ -42,25 +42,35 @@
     }
     #streak{
         float:right;
+        overflow: auto;
+        font-size: 30px;
     }
     button {
-        width:50px;
-        height:50px;
+        width:80px;
+        height:80px;
         font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-size:32px;
+        font-size:42px;
     }
     .prob{
-        font-size:36px;
+        font-size:48px;
         margin:5px;
     }
     #answer{
         display: block;
         margin-left: 120px;
+        font-size: 54px;
     }
     table{
         display: block;
         margin-left: 120px;
+        text-align:center;
     }
+    img{
+        width:40px;
+        height:40px;
+        float:right;
+    }
+
 </style>
 
 <head>
@@ -70,9 +80,11 @@
 
 <body>
     <div id="curvedarrow"></div>
-    <h2 id="streak">0</h2>
-
-    <table style="display:block">
+    <div>
+        <h2 id="streak">0</h2>
+        <h2 style="float: right"><img src="flame.png" alt="streak flame"></h2>
+    </div>
+    <table id="probtable" style="display:block">
         <tr>
             <td><h2 id="part1" class="prob">123</h2></td>
             <td><h2 id="sign" class="prob">+</h2></td>
@@ -87,27 +99,29 @@
             <td><button id="1" class="numpad" onclick="addText(this.id)">1</button></td>
             <td><button id="2" class="numpad" onclick="addText(this.id)">2</button></td>
             <td><button id="3" class="numpad" onclick="addText(this.id)">3</button></td>
-            <td><button id="remove" class="numpad" onclick="removeText()">&lt;</button></td>
+            <td><button id="remove" class="numpad" onclick="removeText()" style="width:60px;">&lt;</button></td>
         </tr>
         <tr>
             <td><button id="4" class="numpad" onclick="addText(this.id)">4</button></td>
             <td><button id="5" class="numpad" onclick="addText(this.id)">5</button></td>
             <td><button id="6" class="numpad" onclick="addText(this.id)">6</button></td>
-            <td rowspan="2"><button id="0" class="numpad" style="height:105px;" onclick="addText(this.id)">0</button></td>
+            <td rowspan="3"><button id="enter" style="height:250px; background-color: firebrick; word-wrap: break-word;
+    font-family: monospace; width:60px" onclick="compare()">ENTER</button></td>
+
         </tr>
         <tr>
             <td><button id="7" class="numpad" onclick="addText(this.id)">7</button></td>
             <td><button id="8" class="numpad" onclick="addText(this.id)">8</button></td>
             <td><button id="9" class="numpad" onclick="addText(this.id)">9</button></td>
         </tr>
-    </table>
-
-    <!--<div id="nums">
-        <a href="twonum.html"><h4 class="options" id="two">2 NUMBERS</h4></a>
-        <a href="threenum.html"><h4 class="options" id="three">3 NUMBERS</h4></a>
-    </div>  -->    
+        <tr>
+            <td colspan="3"><button id="0" class="numpad" style="width:250px;" onclick="addText(this.id)">0</button></td>
+        </tr>
+    </table>   
     
     <script>
+        var result=0;
+        var streaknum = 0;
         function addText(clicked_id) {
             document.getElementById("answer").textContent = document.getElementById("answer").textContent + clicked_id;
         }
@@ -117,8 +131,47 @@
                 str = str.substring(0, str.length - 1);
                 document.getElementById("answer").textContent = str;
             }    
-                //document.getElementById("answer").textContent = document.getElementById("answer").textContent.substring(0, document.getElementById("answer").length-1);
         }
+        function randomNum(){
+            var a = Math.floor((Math.random() * 100) + 1);
+            var b = Math.floor((Math.random() * 100) + 1);
+
+            var c=0;
+            if(((Math.random()*100) + 1)>50)
+                c = 1;
+
+            var probtable = document.getElementById("probtable");
+            var items = probtable.getElementsByTagName("h2");
+            if(c==0){
+                items[1].textContent="+";
+                result = a+b;
+            }else{
+                items[1].textContent="-";
+                if(b>a){
+                    var m = a;
+                    a = b;
+                    b = m;
+                }
+                result = a-b;
+            }
+
+            items[0].textContent = a;
+            items[2].textContent = b;
+        }
+        function compare(){
+            var answers = document.getElementById("answer").textContent;
+            
+            if(answers.substring(2) == result){
+                streaknum++;
+            }else{
+                streaknum=0;
+            }
+            document.getElementById("streak").textContent = streaknum;
+            document.getElementById("answer").textContent = "= ";
+
+            randomNum();
+        }
+        randomNum();
     </script>
 
     <noscript>Sorry, it looks like your browser doesn't support Javascript or have it enabled.</noscript>
