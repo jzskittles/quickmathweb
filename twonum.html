@@ -79,7 +79,7 @@
 </head>
 
 <body>
-    <div id="curvedarrow"></div>
+    <div id="curvedarrow" onclick="back()"></div>
     <div>
         <h2 id="streak">0</h2>
         <h2 style="float: right"><img src="flame.png" alt="streak flame"></h2>
@@ -170,6 +170,9 @@
             document.getElementById("answer").textContent = "= ";
 
             randomNum();
+        }
+        function back(){
+            window.history.back();
         }
         randomNum();
     </script>
