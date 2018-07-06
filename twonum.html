@@ -2,12 +2,11 @@
 <html>
 <style type="text/css">
     html, body {
-        margin: 0;
         min-height: 100%;
     }
     body {
         margin:40px auto;
-        max-width:500px;
+        max-width:320px;
     }
     #curvedarrow {
         position: relative;
@@ -57,17 +56,15 @@
     }
     .prob{
         font-size:48px;
-        margin:5px;
+        margin:3px;
     }
     #answer{
-        display: block;
-        margin-left: 120px;
-        font-size: 54px;
+        font-size: 36px;
+        margin:10px;
     }
     table{
-        display: block;
-        margin-left: 120px;
         text-align:center;
+        width:315px;
     }
     img{
         width:40px;
@@ -86,7 +83,7 @@
 
 <body>
     <div id="curvedarrow" onclick="back()"></div>
-    <div>
+    <div style="float:right; margin-top:10px;">
         <h2 id="streak">0</h2>
         <h2 style="float: right"><img src="flame.png" alt="streak flame"></h2>
     </div>
