@@ -139,7 +139,8 @@
             }
         }
         function addText(clicked_id) {
-            document.getElementById("answer").textContent = document.getElementById("answer").textContent + clicked_id;
+            if(document.getElementById("answer").textContent.length<12)
+                document.getElementById("answer").textContent = document.getElementById("answer").textContent + clicked_id;
         }
         function removeText(){
             if(document.getElementById("answer").textContent.length>2){
