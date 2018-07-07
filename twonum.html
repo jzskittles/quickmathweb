@@ -112,7 +112,6 @@
             <td><button id="6" class="numpad" onclick="addText(this.id)">6</button></td>
             <td rowspan="3"><button id="enter" style="height:250px; background-color: firebrick; word-wrap: break-word;
     font-family: monospace; width:60px" onclick="compare()">ENTER</button></td>
-
         </tr>
         <tr>
             <td><button id="7" class="numpad" onclick="addText(this.id)">7</button></td>
@@ -127,6 +126,16 @@
     <script>
         var result=0;
         var streaknum = 0;
+        var languages = window.location.hash.substring(1);
+        var buttons = document.getElementsByTagName("button");
+        for(i=0; i<buttons.length; i++){
+            if(buttons[i].id=="enter"){
+                if(languages=="en")
+                    buttons[i].textContent="ENTER";
+                else
+                    buttons[i].textContent="抢答";
+            }
+        }
         function addText(clicked_id) {
             document.getElementById("answer").textContent = document.getElementById("answer").textContent + clicked_id;
         }
@@ -177,9 +186,12 @@
             randomNum();
         }
         function back(){
-            window.history.back();
+            window.location.href = "index.html"+"#"+languages;
         }
         randomNum();
+        window.onbeforeunload = function (evt) {
+            window.location.href = "index.html"+"#"+languages;
+        }
     </script>
 
     <noscript>Sorry, it looks like your browser doesn't support Javascript or have it enabled.</noscript>

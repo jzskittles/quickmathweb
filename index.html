@@ -59,18 +59,61 @@
 </head>
 
 <body>
+    <button id="switch-lang" onclick="switchlang()">ENG/中</button>
     <div>
-        <h1>Quick Math</h1>
+        <h1 lang="en">Quick Math</h1>
+        <h1 lang="zh">快算</h1>
     </div>
 
-    <h2>Addition/Subtraction</h2>
+    <h2 lang="en">Addition/Subtraction</h2>
+    <h2 lang="zh">加减</h2>
 
     <div id="nums">
-        <a href="twonum.html"><h4 class="options" id="two">2 NUMBERS</h4></a>
-        <a href="threenum.html"><h4 class="options" id="three">3 NUMBERS</h4></a>
+        <a href="twonum.html#en"><h4 lang = "en" class="options" id="two">2 NUMBERS</h4></a>
+        <a href="twonum.html#zh"><h4 lang = "zh" class="options" id="two">两个数</h4></a>
+        <a href="threenum.html#en"><h4 lang = "en" class="options" id="three">3 NUMBERS</h4></a>
+        <a href="threenum.html#zh"><h4 lang = "zh" class="options" id="three">三个数</h4></a>
     </div>
     
-
+    <script>
+        var languages = window.location.hash.substring(1);
+        if(languages==""){
+            languages="en";
+        }
+        
+        function switchlang(){
+            var h1s = document.getElementsByTagName("h1");
+            for(i=0; i<h1s.length; i++){
+                if(h1s[i].getAttribute("lang")==languages){
+                    h1s[i].style.display = "block";
+                }else{
+                    h1s[i].style.display = "none";
+                }
+            }
+            var h2s = document.getElementsByTagName("h2");
+            for(i=0; i<h2s.length; i++){
+                if(h2s[i].getAttribute("lang")==languages){
+                    h2s[i].style.display = "block";
+                }else{
+                    h2s[i].style.display = "none";
+                }
+            }
+            var h4s = document.getElementsByTagName("h4");
+            for(i=0; i<h4s.length; i++){
+                if(h4s[i].getAttribute("lang")==languages){
+                    h4s[i].style.display = "block";
+                }else{
+                    h4s[i].style.display = "none";
+                }
+            }
+            
+            if(languages == "en")
+                languages = "zh";
+            else
+                languages = "en";
+        }
+        switchlang();
+    </script>
     <noscript>Sorry, it looks like your browser doesn't support Javascript or have it enabled.</noscript>
 
 </body>
