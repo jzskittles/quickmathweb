@@ -2,21 +2,20 @@
 <html>
 <style type="text/css">
     html, body {
-        margin: 0;
         min-height: 100%;
     }
     body {
         margin:40px auto;
+        width:320px;
         height:600px;
-        width:500px;
+        touch-action: manipulation;
     }
     .options{
         background-color:purple;
         color:white;
-        padding:20px;
+        padding:12px;
         text-decoration: none;
-        margin:20px;
-        height:20px;
+        margin:10px;
         outline:solid 5px black;
         font-size:20px;
     }
@@ -28,7 +27,7 @@
         font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-style:italic;
         text-align: center;
-        font-size:48px;
+        font-size:42px;
     }
     h2{
         color:dodgerblue;
@@ -36,45 +35,96 @@
         text-align: center;
     }
     a {
-        display: block;
         width: 100%;
         text-align: center;
         text-decoration: none;
         color:white;
     }
     #nums{
-        width:400px;
+        width:320px;
         height:100px;
         overflow: hidden;
-        margin: 0 auto;
     }
-    #two{
+    #two,#twomd,#tworem{
         float:left;
     }
-    #three{
+    #three,#threemd,#threerem{
         float:right;
-    }
-        
+    }   
 </style>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Quick Math</title>
 </head>
 
 <body>
+    <button id="switch-lang" onclick="switchlang()">ENG/中</button>
     <div>
-        <h1>Quick Math</h1>
+        <h1 lang="en">Quick Math</h1>
+        <h1 lang="zh">快算</h1>
     </div>
 
-    <h2>Addition/Subtraction</h3>
+    <h2 lang="en">Addition/Subtraction</h2>
+    <h2 lang="zh">加减</h2>
 
     <div id="nums">
-        <a href="twonum.html"><h4 class="options" id="two">2 NUMBERS</h4></a>
-        <a href="threenum.html"><h4 class="options" id="three">3 NUMBERS</h4></a>
-    </div>                                            
+        <a href="twonum.html#en"><h4 lang = "en" class="options" id="two">2 NUMBERS</h4></a>
+        <a href="twonum.html#zh"><h4 lang = "zh" class="options" id="two">两个数</h4></a>
+        <a href="threenum.html#en"><h4 lang = "en" class="options" id="three">3 NUMBERS</h4></a>
+        <a href="threenum.html#zh"><h4 lang = "zh" class="options" id="three">三个数</h4></a>
+    </div>
 
+    <h2 lang="en">Multiplication/Division</h2>
+    <h2 lang="zh">乘除</h2>
+
+    <div id="nums">
+        <a href="twomd.html#en"><h4 lang = "en" class="options" id="twomd">2 NUMBERS</h4></a>
+        <a href="twomd.html#zh"><h4 lang = "zh" class="options" id="twomd">两个数</h4></a>
+        <a href="threemd.html#en"><h4 lang = "en" class="options" id="threemd">3 NUMBERS</h4></a>
+        <a href="threemd.html#zh"><h4 lang = "zh" class="options" id="threemd">三个数</h4></a>
+    </div>
+    
+    <script>
+        var languages = window.location.hash.substring(1);
+        if(languages==""){
+            languages="en";
+        }
+        
+        function switchlang(){
+            var h1s = document.getElementsByTagName("h1");
+            for(i=0; i<h1s.length; i++){
+                if(h1s[i].getAttribute("lang")==languages){
+                    h1s[i].style.display = "block";
+                }else{
+                    h1s[i].style.display = "none";
+                }
+            }
+            var h2s = document.getElementsByTagName("h2");
+            for(i=0; i<h2s.length; i++){
+                if(h2s[i].getAttribute("lang")==languages){
+                    h2s[i].style.display = "block";
+                }else{
+                    h2s[i].style.display = "none";
+                }
+            }
+            var h4s = document.getElementsByTagName("h4");
+            for(i=0; i<h4s.length; i++){
+                if(h4s[i].getAttribute("lang")==languages){
+                    h4s[i].style.display = "block";
+                }else{
+                    h4s[i].style.display = "none";
+                }
+            }
+            
+            if(languages == "en")
+                languages = "zh";
+            else
+                languages = "en";
+        }
+        switchlang();
+    </script>
     <noscript>Sorry, it looks like your browser doesn't support Javascript or have it enabled.</noscript>
 
 </body>
